@@ -8,3 +8,8 @@ Need a quick shuffle of your partition tables to account for the new space?
 
 ## Fear not!
 A simple script to resize your parition table. Quick and easy. Done.
+
+## Usage
+1. Download the partition-resize.sh script or the repository.
+2. Give execute permissions to the script (`chmod +x partition-resize.sh`)
+3. Profit.
