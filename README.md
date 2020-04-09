@@ -1,6 +1,9 @@
-# Partition Table Resizing
+# Partition Table Resizing Script
+
 Run out of space on your VM?
+
 Expand your drive but still getting full disk warnings?
+
 Need a quick shuffle of your partition tables to account for the new space?
 
 
