@@ -1,5 +1,4 @@
 #!/bin/bash
-## THIS IS SPECIFICALLY FOR THE SEMO CYBER RANGE KALI LINUX 2019 BOXES
 # RUN AS ROOT
 swapoff -a
 #for loop, check confirmation, if wrong repeat and search for next drive
@@ -8,16 +7,13 @@ DRIVE=$(ls /dev | awk '/da/ {print $0}' | awk 'FNR == 1 {print}')
 MAIN_DRIVE="/dev/$DRIVE"
 echo "Using $MAIN_DRIVE"
 
-
 # Assumes Gigabytes
 declare -i TOTAL_SPACE=$(fdisk -l | grep $DRIVE | cut -d':' -f2 | cut -d',' -f1 | cut -d' ' -f2 | awk 'FNR == 1 {print}')
 STORAGE="+"$((TOTAL_SPACE - 4))"G"
 # Save 2 GB just in case. No need really.
 SWAP="+""2""G"
-#sed -i 's/X/+'$STORAGE'G/g' import.txt
-#sed -i 's/S/+'$SWAP'G/g' import.txt
 
-(echo p; echo d; echo 5; echo d; echo 1; echo d; echo n; echo p; echo 1; echo ""; echo $STORAGE; echo "Y"; echo n; echo p; echo 2; echo ""; echo $SWAP; echo t; echo 2; echo 82; echo w; echo p)) | fdisk $MAIN_DRIVE
+(echo p; echo d; echo 5; echo d; echo 1; echo d; echo n; echo p; echo 1; echo ""; echo $STORAGE; echo "Y"; echo n; echo p; echo 2; echo ""; echo $SWAP; echo t; echo 2; echo 82; echo w; echo p) | fdisk $MAIN_DRIVE
 
 partprobe
 resize2fs $MAIN_DRIVE"1"
