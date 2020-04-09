@@ -5,9 +5,10 @@ swapoff -a
 #for loop, check confirmation, if wrong repeat and search for next drive
 DRIVE=$(ls /dev | awk '/da/ {print $0}' | awk 'FNR == 1 {print}')
 #read -p for confirmation instead of below line.
-echo 'Using /dev/$DRIVE'
+MAIN_DRIVE="/dev/$DRIVE"
+echo "Using $MAIN_DRIVE"
 
-MAIN_DRIVE = "/dev/$DRIVE"
+
 # Assumes Gigabytes
 declare -i TOTAL_SPACE=$(fdisk -l | grep $DRIVE | cut -d':' -f2 | cut -d',' -f1 | cut -d' ' -f2 | awk 'FNR == 1 {print}')
 STORAGE=$((TOTAL_SPACE - 4))
