@@ -9,7 +9,7 @@ echo 'Using /dev/$DRIVE'
 
 MAIN_DRIVE = "/dev/$DRIVE"
 # Assumes Gigabytes
-declare -i TOTAL_SPACE=$(fdisk -l | grep $DRIVE | cut -d':' -f2 | cut -d',' -f1 | cut -d' ' -f2 | cut -d#'\n' -f1)
+declare -i TOTAL_SPACE=$(fdisk -l | grep $DRIVE | cut -d':' -f2 | cut -d',' -f1 | cut -d' ' -f2 | awk 'FNR == 1 {print}')
 STORAGE=$((TOTAL_SPACE - 4))
 # Save 2 GB just in case. No need really.
 SWAP=2
@@ -22,6 +22,6 @@ partprobe
 resize2fs $MAIN_DRIVE"1"
 mkswap $MAIN_DRIVE"2"
 SWAP_UUID=$(blkid | grep "swap" | awk '/UUID="*"/ {print $2}' | cut -d'"' -f2)
-ORIG_UUID=$(cat /etc/fstab | grep swap | cut -d'=' -f2 | cut -d' ' -f1 | cut -d$'\n' -f2)
+ORIG_UUID=$(cat /etc/fstab | grep swap | cut -d'=' -f2 | cut -d' ' -f1 | awk 'FNR == 2 {print}')
 sed -i '/^.*swap*/s/UUID='$ORIG_UUID'/UUID='$SWAP_UUID'/g' /etc/fstab
 swapon -a
