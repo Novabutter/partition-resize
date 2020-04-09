@@ -8,13 +8,13 @@ n
 p
 1
 
-+G
+$STORAGE
 Y
 n
 p
 2
 
-++G
+$SWAP
 t
 2
 82
