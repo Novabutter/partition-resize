@@ -1,4 +1,4 @@
-# Partition Table Resizing Script
+# Partition Table Resizing Script (Without Rebooting)
 
 Run out of space on your VM?
 
@@ -7,7 +7,7 @@ Expand your drive but still getting full disk warnings?
 Need a quick shuffle of your partition tables to account for the new space?
 
 ## Fear not!
-A simple script to resize your parition table. Quick and easy. Done.
+A simple script to resize your parition table. Quick and easy. And did I mention the script runs *without rebooting*?
 
 ## Usage
 1. Download the partition-resize.sh script or the repository.
